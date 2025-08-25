@@ -1,0 +1,48 @@
+﻿@page
+@model UniversityReservations.Pages.LectureHalls.IndexModel
+@{
+    ViewData["Title"] = "Lecture Halls";
+}
+
+<h2>Lecture Halls</h2>
+
+<p>
+    <a asp-page="Create" class="btn btn-primary">Create New Lecture Hall</a>
+</p>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Capacity</th>
+            <th>Location</th>
+            <th>Features</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.LectureHalls)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                <td>@Html.DisplayFor(modelItem => item.Capacity)</td>
+                <td>@Html.DisplayFor(modelItem => item.Location)</td>
+                <td>
+                    @if (item.HasProjector)
+                    {
+                        <span class="badge bg-primary me-1">Projector</span>
+                    }
+                    @if (item.HasMicrophone)
+                    {
+                        <span class="badge bg-success">Microphone</span>
+                    }
+                </td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.Id" class="btn btn-sm btn-warning">Edit</a>
+                    <a asp-page="./Details" asp-route-id="@item.Id" class="btn btn-sm btn-info">Details</a>
+                    <a asp-page="./Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

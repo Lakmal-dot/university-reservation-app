@@ -1,0 +1,47 @@
+﻿@page
+@model UniversityReservations.Pages.LectureHalls.DetailsModel
+@{
+    ViewData["Title"] = "Lecture Hall Details";
+}
+
+<h2>Lecture Hall Details</h2>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.LectureHall.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.LectureHall.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.LectureHall.Capacity)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.LectureHall.Capacity)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.LectureHall.Location)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.LectureHall.Location)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.LectureHall.HasProjector)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.LectureHall.HasProjector)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.LectureHall.HasMicrophone)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.LectureHall.HasMicrophone)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.LectureHall.Id" class="btn btn-warning">Edit</a>
+    <a asp-page="./Index" class="btn btn-secondary">Back to List</a>
+</div>

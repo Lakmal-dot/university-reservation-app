@@ -1,0 +1,86 @@
+﻿@page
+@model UniversityReservations.Pages.Reservations.IndexModel
+@{
+    ViewData["Title"] = "Reservations";
+}
+
+<h2>Reservations</h2>
+
+<p>
+    <a asp-page="Create" class="btn btn-primary">Create New Reservation</a>
+</p>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Lecturer</th>
+            <th>Lecture Hall</th>
+            <th>Start Time</th>
+            <th>End Time</th>
+            <th>Purpose</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Reservations)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.Lecturer.FullName)</td>
+                <td>@Html.DisplayFor(modelItem => item.LectureHall.Name)</td>
+                <td>@Html.DisplayFor(modelItem => item.StartTime)</td>
+                <td>@Html.DisplayFor(modelItem => item.EndTime)</td>
+                <td>@Html.DisplayFor(modelItem => item.Purpose)</td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.Id" class="btn btn-sm btn-warning">Edit</a>
+                    <a asp-page="./Details" asp-route-id="@item.Id" class="btn btn-sm btn-info">Details</a>
+                    <a asp-page="./Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<!-- AJAX Section for Additional Features -->
+<div class="card mt-4">
+    <div class="card-header">
+        <h4>View Lecturer Reservations</h4>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-4">
+                <select id="lecturerSelect" class="form-select">
+                    <option value="">Select a Lecturer</option>
+                    @foreach (var lecturer in Model.Lecturers)
+                    {
+                        <option value="@lecturer.Id">@lecturer.FullName</option>
+                    }
+                </select>
+            </div>
+        </div>
+
+        <div id="loadingIndicator" class="text-center mt-3" style="display: none;">
+            <div class="spinner-border" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-md-4">
+                <h5>Next Reservation</h5>
+                <div id="next-reservation" class="border p-2"></div>
+            </div>
+            <div class="col-md-4">
+                <h5>Future Reservations</h5>
+                <div id="future-reservations" class="border p-2" style="max-height: 200px; overflow-y: auto;"></div>
+            </div>
+            <div class="col-md-4">
+                <h5>Past Reservations</h5>
+                <div id="past-reservations" class="border p-2" style="max-height: 200px; overflow-y: auto;"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/reservations.js"></script>
+}

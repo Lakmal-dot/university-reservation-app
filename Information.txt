@@ -1,0 +1,3 @@
+1. This project was created using .net 9 and Razor pages.
+2. PostgreSQL has been use for the database.
+3. Unit tests have been written using xUnit.
